@@ -172,7 +172,7 @@ export default function Home(){
     setMessages(prev=>[...prev,{role:'user',text,time:getTime()}])
     const nh=[...history,{role:'user',content:text}]; setHistory(nh)
     try{
-      const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:nh})})
+      const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,history:history})
       const data=await res.json()
       if(data.error)throw new Error(data.error)
       let reply=data.content[0].text
