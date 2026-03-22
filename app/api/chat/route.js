@@ -30,8 +30,9 @@ export async function POST(req) {
     const reply = data.content[0].text;
     return Response.json({ reply });
 
-  } catch (error) {
-    console.error(error);
-    return Response.json({ error: "繋がらぬごわす。" }, { status: 500 });
+} catch (error) {
+  console.error('詳細エラー:', JSON.stringify(error.message), JSON.stringify(error.stack));
+  return Response.json({ error: "繋がらぬごわす。", detail: error.message }, { status: 500 });
+}
   }
 }
