@@ -175,7 +175,7 @@ export default function Home(){
       const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,history:history})})
       const data=await res.json()
       if(data.error)throw new Error(data.error)
-      let reply=data.content[0].text
+      let reply=data.reply
       const em=reply.match(/\[EMOTION:(happy|normal|angry)\]/)
       const ne=em?em[1]:'normal'; reply=reply.replace(/\[EMOTION:(happy|normal|angry)\]/,'').trim()
       setEmotion(ne)
